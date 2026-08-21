@@ -4,11 +4,16 @@ and the two DynamoDB tables. Nothing else in this stack should ever get
 broad access to this bucket -- see lambdas.py for the scoped per-function
 IAM statements.
 """
+import os
+
 from aws_cdk import CfnOutput, RemovalPolicy
 from aws_cdk import aws_s3 as s3
+from aws_cdk import aws_s3_deployment as s3_deployment
 from aws_cdk import aws_dynamodb as dynamodb
 from aws_cdk import aws_iam as iam
 from constructs import Construct
+
+_ASSETS_DIR = os.path.normpath(os.path.join(os.path.dirname(__file__), "..", "..", "..", "assets"))
 
 
 class Storage(Construct):

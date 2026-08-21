@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Second Skin — a daily textile studio</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Second Skin</h1>
+    <p>A pattern studio that never closes. One new fabric design a day, evolving on its own.</p>
+  </header>
+  <main>
+    <div id="gallery" class="grid"><p class="empty-state">Loading today's studio…</p></div>
+
+    <div class="submit-box">
+      <h2>Nudge tomorrow's design</h2>
+      <p style="color: var(--muted); font-size: 0.85rem; margin-top: -0.5rem;">
+        Submit one mood word or phrase. If it passes a quick review, the studio will fold it into its next brief.
+      </p>
+      <form id="submit-form">
+        <input type="text" id="word-input" maxlength="40" placeholder="e.g. brutalist, citrus, nostalgic" required />
+        <button type="submit">Send</button>
+      </form>
+      <div id="submit-status" class="submit-status"></div>
+    </div>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/submit.js"></script>
+</body>
+</html>
