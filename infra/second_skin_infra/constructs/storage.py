@@ -51,6 +51,18 @@ class Storage(Construct):
             ],
         ))
 
+        # Ships tiles/placeholder.png automatically on every deploy -- used by
+        # GenerateImage's Catch fallback and by day-1 image-conditioning
+        # (there's no "yesterday" yet), so it must always exist before the
+        # first pipeline run rather than depend on a manual upload step.
+        s3_deployment.BucketDeployment(
+            self, "SeedPlaceholder",
+            sources=[s3_deployment.Source.asset(_ASSETS_DIR)],
+            destination_bucket=self.bucket,
+            destination_key_prefix="tiles",
+            prune=False,  # never let this deployment delete daily tiles it doesn't know about
+        )
+
         self.designs_table = dynamodb.Table(
             self, "SecondSkinDesigns",
             partition_key=dynamodb.Attribute(name="date", type=dynamodb.AttributeType.STRING),
